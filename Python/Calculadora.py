@@ -47,6 +47,4 @@ elif op == 'v':
 		print("O valor da raiz " + b + "a de " + a + " é " + c);
 else:
 	print("Insira um valor válido, obrigado")
-
-
-print("Até mais!")
+fechar = input("Até mais!")
