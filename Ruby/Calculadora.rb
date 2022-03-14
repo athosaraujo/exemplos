@@ -5,7 +5,6 @@ puts "* Multiplicação | / Divisão"
 puts "^ Exponenciação | v Radiciação"
 puts"-----------------------------------------------"
 op = gets.chomp
-repeat = 1
 	case op
 		when '+' , 'Soma' , 'soma'
 			puts "\nInsira o valor inicial"; a = gets.chomp.to_f
