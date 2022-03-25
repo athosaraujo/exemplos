@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 int i;
-int dealer[9] = {0,0,0,0,0,0,0,0,0},player[9] = {0,0,0,0,0,0,0,0,0},playTotal=0,dealTotal=0,
+int dealer[9] = {0,0,0,0,0,0,0,0,0},player[9] = {0,0,0,0,0,0,0,0,0},pt=0,dt=0,
 	card,anotherCard, One, timesPlay=1,timesDeal=1, choice;	
 		
 int resetValues(){
@@ -12,7 +12,7 @@ int resetValues(){
 	for(int i=0;i<=9;++i){
 		player[i]=0;
 	}
-	playTotal=0,dealTotal=0,
+	pt=0,dt=0,
 	card,anotherCard, One, timesPlay=1,timesDeal=1;
 }		
 		
@@ -32,8 +32,8 @@ int sumArray(int x,int y[]){
 int pl(){
 	player[0] = cartAleat(card);player[1] = cartAleat(card);
 	printf("You've got a %d and a %d\n",player[0],player[1]);
-	playTotal = sumArray(playTotal,player);
-	printf("Your total is %d\n\n", playTotal);
+	pt = sumArray(pt,player);
+	printf("Your total is %d\n\n", pt);
 	
 	One:	
 	anotherCard=0;
@@ -42,35 +42,35 @@ int pl(){
 	if(anotherCard==1){
 		timesPlay++;
 		player[timesPlay] = cartAleat(card);
-		playTotal = sumArray(playTotal,player);
+		pt = sumArray(pt,player);
 		printf("You drew a %d\n", player[timesPlay]);
-		printf("Your total is %d\n\n", playTotal);
-	if(playTotal==21 ^ playTotal>21){return playTotal;}
+		printf("Your total is %d\n\n", pt);
+	if(pt==21 ^ pt>21){return pt;}
 	goto One;
 	} 
 }
 
 int pc(){
 	printf("The dealer has a %d and a %d\n", dealer[0],dealer[1]);
-	printf("The dealer's total is %d\n", dealTotal);
-		while(dealTotal<17){
+	printf("The dealer's total is %d\n", dt);
+		while(dt<=17){
 		timesDeal++;
 		dealer[timesDeal] = cartAleat(card);
-		dealTotal = sumArray(dealTotal,dealer);
+		dt = sumArray(dt,dealer);
 		printf("The dealer drew a %d\n", dealer[timesDeal]);
-		printf("The dealer's total is %d\n", dealTotal);
-		}
-	if(dealTotal==21^dealTotal>21){return;}
+		printf("The dealer's total is %d\n", dt);
+		} return dt;}
 
+int end(int x, int y){
+	if(x == y){printf("You tied!\n\n");}
+	else if(x>y){
+		if(x<=21){printf("You Win!\n\n");}
+		else{printf("You Busted!\n\n");}}
+	else{
+		if(y>21){printf("\nThe House Has Gone Bust!\n\n");}
+		else{printf("\nThe House Always Wins!\n\n");}}
 }
 
-int end(){
-	if(playTotal > dealTotal && playTotal <= 21){printf("Your a wiener!\n\n");}
-	else if(playTotal > dealTotal && playTotal > 21){printf("You Busted!\n\n");}
-	else if (playTotal < dealTotal && dealTotal<=21){printf("The house always wins!\n\n");}
-	else if(playTotal < dealTotal && dealTotal>21){printf("\nThe house has gone bust!\n\n");}
-	else{printf("You tied!\n\n");}
-}
 
 int main(){
 	srand(time(NULL));
@@ -80,12 +80,14 @@ int main(){
 	printf("Welcome to Mr. House's terminal Blackjack!\n");
 	dealer[0] = cartAleat(card);dealer[1] = cartAleat(card);
 	printf("Dealer has a %d\n", dealer[0]);
-	dealTotal = sumArray(dealTotal,dealer);
+	dt = sumArray(dt,dealer);
 
 	
-	playTotal=pl();
-	if(playTotal<21){pc();}
-	end();
+	pt=pl();
+	if(pt<21){
+	dt=pc();}
+
+	end(pt,dt);
 	
 	printf("Would you like to play again? If yes then press 1: ");
 	scanf("%d", &choice);
