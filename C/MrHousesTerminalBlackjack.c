@@ -45,7 +45,7 @@ int pl(){
 		playTotal = sumArray(playTotal,player);
 		printf("You drew a %d\n", player[timesPlay]);
 		printf("Your total is %d\n\n", playTotal);
-	if(playTotal==21 ^ playTotal>21){return;}
+	if(playTotal==21 ^ playTotal>21){return playTotal;}
 	goto One;
 	} 
 }
@@ -78,12 +78,13 @@ int main(){
 	start:
 	system("cls");	
 	printf("Welcome to Mr. House's terminal Blackjack!\n");
+	dealer[0] = cartAleat(card);dealer[1] = cartAleat(card);
 	printf("Dealer has a %d\n", dealer[0]);
 	dealTotal = sumArray(dealTotal,dealer);
 
 	
-	pl();
-	pc();
+	playTotal=pl();
+	if(playTotal<21){pc();}
 	end();
 	
 	printf("Would you like to play again? If yes then press 1: ");
