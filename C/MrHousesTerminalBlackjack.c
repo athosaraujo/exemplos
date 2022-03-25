@@ -47,29 +47,27 @@ int pl(){
 		printf("Your total is %d\n\n", pt);
 	if(pt==21 ^ pt>21){return pt;}
 	goto One;
-	} 
+	}return pt; 
 }
 
 int pc(){
 	printf("The dealer has a %d and a %d\n", dealer[0],dealer[1]);
 	printf("The dealer's total is %d\n", dt);
-		while(dt<=17){
+		for(;;){
 		timesDeal++;
 		dealer[timesDeal] = cartAleat(card);
 		dt = sumArray(dt,dealer);
 		printf("The dealer drew a %d\n", dealer[timesDeal]);
 		printf("The dealer's total is %d\n", dt);
-		} return dt;}
+		if(dt>=17){return dt;}}}
 
 int end(int x, int y){
-	if(x == y){printf("You tied!\n\n");}
-	else if(x>y){
-		if(x<=21){printf("You Win!\n\n");}
-		else{printf("You Busted!\n\n");}}
-	else{
-		if(y>21){printf("\nThe House Has Gone Bust!\n\n");}
-		else{printf("\nThe House Always Wins!\n\n");}}
-}
+if(x==y){printf("\nYou Tied\n\n");}
+	else if(x>21){printf("You Bust!\n\n");}
+	else if(x>y){printf("You Win!\n\n");}
+	else if(y>21){printf("\nThe House Went Bust!\n\n");}
+	else if(x<y){printf("\nThe House Always Wins!\n\n");}
+	}
 
 
 int main(){
