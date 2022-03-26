@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 int lin;
 void baseMat(char* matriz){			//Declara os valores de dentro do array matriz
 	for(int i=0;i<lin;i++){
@@ -61,7 +62,6 @@ int main(){				// Executa as funções
 	printMat(matriz);
 	 
 	 
-	getchar(); // Deixa a pessoa pressionar enter para encerrar o código
+	system("PAUSE"); // Deixa a pessoa pressionar enter para encerrar o código
 	return 0;
 }
-
